@@ -1,13 +1,13 @@
 from typing import List
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class RecipeBase(BaseModel):
     title: str
     ingredients: List[str]
     instructions: str
-    prep_minutes: int = 0
-    servings: int = 1
+    prep_minutes: int = Field(default=0, ge=0)
+    servings: int = Field(default=1, ge=1)
 
 
 class RecipeCreate(RecipeBase):
